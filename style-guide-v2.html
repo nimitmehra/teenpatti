@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teen Patti Heritage Style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Cormorant+SC:wght@600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* materials */
+  --cream:#F8F0DF;      /* page: cream linen */
+  --paper:#FFFCF5;      /* panels: ivory paper */
+  --hair:#E4D7BC;       /* hairlines between rows */
+  --ink:#121A2C;        /* text: navy-black ink */
+  --grey:#5A5246;       /* secondary text: warm grey */
+  --navy:#13254B;       /* the house: masthead, titles, outlines */
+  --green:#0E4A36;      /* play: main action, money up */
+  --green-deep:#0A3828;
+  --garnet:#8B2630;     /* caution: pack, money down */
+  --leaf:#A3822F;       /* gold leaf: lines and frames only */
+  --gold-on-navy:#DDBF74;
+  --pale-gold:#F2E6C6;  /* honour: current player, winner */
+  --antique:#7A5C14;    /* dark gold: allowed as text, large */
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sc:"Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--cream); color:var(--ink); font-family:var(--sans); font-size:18px; line-height:1.6; font-variant-numeric:lining-nums; -webkit-font-smoothing:antialiased}
+button{font-variant-numeric:lining-nums tabular-nums}
+h1,h2,h3,.turn-name,.pl-name{text-wrap:balance}
+.wrap{max-width:900px; margin:0 auto; padding:0 20px 110px}
+@media (max-width:640px){ .wrap{padding:0 14px 80px} }
+
+/* ---------- masthead: the only navy band ---------- */
+.mast{background:var(--navy); color:var(--paper); text-align:center; padding:26px 20px 22px}
+.mast-title{font-family:var(--sc); font-weight:700; font-size:38px; letter-spacing:.16em; line-height:1; padding-left:.16em}
+.mast-sub{font-family:var(--sc); font-weight:600; font-size:17px; letter-spacing:.24em; color:var(--gold-on-navy); margin-top:10px; padding-left:.24em}
+.orn{display:flex; align-items:center; gap:12px; max-width:340px; margin:14px auto 0}
+.orn::before,.orn::after{content:""; flex:1; height:1px; background:var(--leaf)}
+.orn i{width:8px; height:8px; background:var(--leaf); transform:rotate(45deg); flex:none}
+.mast .orn::before,.mast .orn::after{background:var(--gold-on-navy)}
+.mast .orn i{background:var(--gold-on-navy)}
+
+.intro{text-align:center; margin:56px auto 0; max-width:720px}
+.intro h1{font-family:var(--serif); font-weight:700; font-size:clamp(38px,6.4vw,56px); line-height:1.08; margin:0 0 14px; color:var(--navy)}
+.intro p{font-size:19px; color:var(--grey); margin:0}
+
+/* ---------- frame: one per section, gold double line, square corners ---------- */
+.frame{background:var(--paper); border:2px solid var(--leaf); outline:1px solid var(--leaf); outline-offset:-8px; border-radius:2px; padding:40px 36px 38px; margin-top:44px}
+@media (max-width:640px){ .frame{padding:30px 20px 28px; outline-offset:-6px} }
+.title{font-family:var(--sc); font-weight:700; font-size:25px; letter-spacing:.14em; color:var(--navy); text-align:center; display:flex; align-items:center; justify-content:center; gap:18px; margin:0 0 28px; line-height:1.2}
+.title::before,.title::after{content:""; width:56px; height:1px; background:var(--leaf); flex:none}
+@media (max-width:480px){ .title::before,.title::after{width:24px} .title{font-size:22px} }
+.kicker{font-family:var(--sc); font-weight:700; font-size:18px; letter-spacing:.14em; color:var(--grey); text-align:center}
+
+/* ---------- materials ---------- */
+.mats{display:grid; grid-template-columns:1fr 1fr; gap:14px 28px}
+@media (max-width:700px){ .mats{grid-template-columns:1fr} }
+.mat{display:flex; gap:14px; align-items:flex-start}
+.mat i{width:46px; height:46px; flex:none; border:1px solid rgba(18,26,44,.18)}
+.mat b{display:block; font-weight:600; font-size:18px}
+.mat span{display:block; color:var(--grey); font-size:16px; line-height:1.45}
+.mat code{font-size:14px; color:var(--grey)}
+.prop{display:flex; height:22px; margin-top:30px; border:1px solid var(--hair)}
+.prop div{height:100%}
+.prop-key{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:10px; font-size:15px; color:var(--grey)}
+
+/* ---------- turn ---------- */
+.turn-name{font-family:var(--serif); font-weight:700; font-size:clamp(48px,8vw,66px); line-height:1; text-align:center; margin:12px 0 14px; color:var(--ink)}
+.tagline{text-align:center; color:var(--grey); font-size:18px}
+.tag{display:inline-block; font-family:var(--sc); font-weight:700; font-size:16px; letter-spacing:.14em; line-height:1; color:var(--ink); border:1px solid var(--ink); padding:5px 9px 6px; vertical-align:2px; margin-right:6px}
+.money{display:flex; justify-content:center; flex-wrap:wrap; gap:8px 34px; margin-top:24px}
+.money div{text-align:center}
+.money .l{display:block; font-family:var(--sc); font-weight:700; font-size:17px; letter-spacing:.14em; color:var(--grey)}
+.money .n{display:block; font-family:var(--serif); font-weight:700; font-size:46px; line-height:1.05; color:var(--navy); font-variant-numeric:lining-nums tabular-nums}
+.frame .orn{margin:28px auto 26px}
+
+.acts{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:700px){ .acts{grid-template-columns:1fr} }
+.act{display:flex; flex-direction:column; gap:4px; text-align:left; min-height:90px; padding:16px 22px; border-radius:2px; border:1.5px solid var(--navy); background:var(--paper); color:var(--navy); font-family:var(--sans); cursor:pointer;
+  transition:background-color .15s ease, transform .08s ease}
+.act:hover{background:#F7EFDD}
+.act:active{transform:translateY(1px)}
+.act:focus-visible{outline:3px solid var(--leaf); outline-offset:3px}
+.act .t{display:flex; align-items:baseline; gap:10px; font-size:21px; font-weight:600; line-height:1.2}
+.act .t b{font-family:var(--serif); font-weight:700; font-size:31px; line-height:1}
+.act .t em{font-style:normal; color:var(--leaf)}
+.act .d{font-size:16px; line-height:1.45; color:var(--grey)}
+.act-main{grid-column:1/-1; background:var(--green); border-color:var(--green); color:var(--paper); outline:1px solid rgba(221,191,116,.8); outline-offset:-7px; min-height:98px; padding:20px 26px}
+.act-main .t em{color:var(--gold-on-navy)}
+.act-main .d{color:rgba(255,252,245,.88)}
+.act-main:hover{background:var(--green-deep)}
+.act-main:focus-visible{outline:3px solid var(--leaf); outline-offset:3px}
+.act-pack{grid-column:1/-1; border-color:var(--garnet); color:var(--garnet)}
+.act-pack .d{color:var(--garnet)}
+.act[disabled]{opacity:.4; cursor:not-allowed}
+
+/* ---------- seats ---------- */
+.seats{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+@media (max-width:700px){ .seats{grid-template-columns:1fr} }
+.seat{background:var(--paper); border:1px solid var(--hair); border-radius:2px; padding:18px 20px}
+.seat.now{background:var(--pale-gold); border:2px solid var(--leaf); outline:1px solid var(--leaf); outline-offset:-7px}
+.seat.out{opacity:.5}
+.seat-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.seat .nm{font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.1}
+.seat .now-l{font-family:var(--sc); font-weight:700; font-size:15px; letter-spacing:.14em; color:var(--antique)}
+.dealer{font-family:var(--sc); font-weight:700; font-size:15px; letter-spacing:.1em; color:var(--grey)}
+.seat .tag{margin:10px 0 12px}
+.row{display:flex; justify-content:space-between; font-size:16.5px; color:var(--grey); margin-top:2px}
+.row b{color:var(--ink); font-weight:600}
+
+/* ---------- winner plaque ---------- */
+.plaque{background:var(--pale-gold); border:2px solid var(--leaf); outline:1px solid var(--leaf); outline-offset:-8px; border-radius:2px; text-align:center; padding:26px 26px 34px; max-width:560px; margin:0 auto}
+.arch{display:block; width:200px; height:84px; margin:0 auto 6px}
+.pl-k{font-family:var(--sc); font-weight:700; font-size:18px; letter-spacing:.16em; color:var(--antique); margin-top:-62px; position:relative}
+.pl-name{font-family:var(--serif); font-weight:700; font-size:clamp(40px,7vw,54px); line-height:1.05; color:var(--navy); margin:30px 0 8px}
+.pl-flavour{font-family:var(--serif); font-style:italic; font-weight:600; font-size:23px; color:var(--grey)}
+.nets{display:flex; justify-content:center; flex-wrap:wrap; gap:6px 30px; margin-top:20px; font-size:17px; color:var(--grey)}
+.nets b{font-family:var(--serif); font-weight:700; font-size:28px; margin-left:6px; font-variant-numeric:lining-nums tabular-nums}
+.up{color:var(--green)} .down{color:var(--garnet)}
+
+/* ---------- scoreboard ---------- */
+.lb{display:grid; grid-template-columns:56px 1fr auto auto; gap:18px; align-items:center; padding:18px 4px; border-bottom:1px solid var(--hair)}
+.lb:last-child{border-bottom:none}
+.lb-rank{font-family:var(--serif); font-weight:700; font-size:38px; color:var(--antique); text-align:center; line-height:1}
+.lb-name{font-family:var(--serif); font-weight:700; font-size:28px; line-height:1.1}
+.lb-name span{display:block; font-family:var(--sans); font-weight:400; font-size:16px; color:var(--grey); margin-top:4px}
+.lb-net{font-family:var(--serif); font-weight:700; font-size:38px; font-variant-numeric:lining-nums tabular-nums}
+.lb-chips{text-align:right; min-width:96px}
+.lb-chips span{display:block; font-family:var(--sc); font-weight:700; font-size:15px; letter-spacing:.14em; color:var(--grey)}
+.lb-chips b{font-weight:600; font-size:19px}
+@media (max-width:560px){ .lb{grid-template-columns:36px 1fr auto; gap:12px} .lb-chips{display:none} .lb-net{font-size:32px} }
+
+/* ---------- type + shape rules ---------- */
+.spec{display:grid; grid-template-columns:210px 1fr; gap:22px; align-items:baseline; padding:18px 0; border-bottom:1px solid var(--hair)}
+.spec:first-of-type{padding-top:0}
+.spec:last-child{border-bottom:none; padding-bottom:0}
+.spec .k{font-size:14px; color:var(--grey); line-height:1.45}
+.spec .k b{display:block; color:var(--ink); font-weight:600; font-size:15px}
+@media (max-width:640px){ .spec{grid-template-columns:1fr; gap:6px} }
+ul.dia{list-style:none; padding:0; margin:0}
+ul.dia li{position:relative; padding-left:28px; margin:12px 0}
+ul.dia li::before{content:""; position:absolute; left:5px; top:.62em; width:8px; height:8px; background:var(--leaf); transform:rotate(45deg)}
+ul.dia b{font-weight:600}
+ul.dia span{color:var(--grey)}
+
+/* motion */
+.turn-name.leave{opacity:0; transform:translateY(-6px); transition:opacity .16s ease, transform .16s ease}
+.turn-name.enter{opacity:0; transform:translateY(8px)}
+.turn-name.settle{opacity:1; transform:none; transition:opacity .22s ease, transform .22s ease}
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="mast-title">Teen Patti</div>
+  <div class="orn"><i></i></div>
+  <div class="mast-sub">The Family Card Table</div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>A card table dressed the way a palace hotel would dress it.</h1>
+    <p>Cream linen and ivory paper. Navy for the house, gold leaf for honour, green for play, garnet only for caution. Square corners, one frame per section, nothing that blinks.</p>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="frame">
+    <h2 class="title">The materials</h2>
+    <div class="mats">
+      <div class="mat"><i style="background:#F8F0DF"></i><div><b>Cream linen</b><span>The page. Warm, never grey. <code>#F8F0DF</code></span></div></div>
+      <div class="mat"><i style="background:#FFFCF5"></i><div><b>Ivory paper</b><span>Every panel and button. <code>#FFFCF5</code></span></div></div>
+      <div class="mat"><i style="background:#121A2C"></i><div><b>Navy-black ink</b><span>All reading text. 15 to 1 on the page. <code>#121A2C</code></span></div></div>
+      <div class="mat"><i style="background:#13254B"></i><div><b>House navy</b><span>The masthead, section titles, outlined buttons. Authority. <code>#13254B</code></span></div></div>
+      <div class="mat"><i style="background:#0E4A36"></i><div><b>Bottle green</b><span>Play: the main move, and money won. <code>#0E4A36</code></span></div></div>
+      <div class="mat"><i style="background:#A3822F"></i><div><b>Gold leaf</b><span>Honour: every frame, rule and ornament. Lines only, never text. <code>#A3822F</code></span></div></div>
+      <div class="mat"><i style="background:#F2E6C6"></i><div><b>Pale gold</b><span>Fills only the current player’s seat and the winner’s plaque. <code>#F2E6C6</code></span></div></div>
+      <div class="mat"><i style="background:#8B2630"></i><div><b>Garnet</b><span>Caution only: Pack, and money lost. No orange anywhere. <code>#8B2630</code></span></div></div>
+    </div>
+    <div class="prop" aria-label="Proportions">
+      <div style="width:72%;background:#F8F0DF"></div><div style="width:12%;background:#13254B"></div><div style="width:7%;background:#121A2C"></div>
+      <div style="width:5%;background:#0E4A36"></div><div style="width:3%;background:#A3822F"></div><div style="width:1%;background:#8B2630"></div>
+    </div>
+    <div class="prop-key"><span>Cream and ivory 72%</span><span>Navy 12%</span><span>Ink 7%</span><span>Green 5%</span><span>Gold 3%</span><span>Garnet 1%</span></div>
+  </section>
+
+  <!-- TURN -->
+  <section class="frame">
+    <div class="kicker">Hand 3 · Asha deals</div>
+    <div class="turn-name" id="turnName">Meera’s turn</div>
+    <div class="tagline" id="turnSub"><span class="tag">Seen</span> has looked at the cards, so every bet costs double</div>
+    <div class="money">
+      <div><span class="l">Pot</span><span class="n" id="pot">140</span></div>
+      <div><span class="l">Stake</span><span class="n">20</span></div>
+      <div><span class="l">Seen pays</span><span class="n">40</span></div>
+    </div>
+    <div class="orn"><i></i></div>
+    <div class="acts">
+      <button class="act act-main" id="chaalBtn"><span class="t">Chaal <em>·</em> <b>40</b></span><span class="d">Stay in. Pay 40, twice the stake, because you have seen your cards.</span></button>
+      <button class="act"><span class="t">Raise <em>·</em> <b>80</b></span><span class="d">The stake doubles to 40 for everyone after you.</span></button>
+      <button class="act"><span class="t">Side show with Ravi <em>·</em> <b>40</b></span><span class="d">Compare cards in secret. The lower hand packs.</span></button>
+      <button class="act act-pack"><span class="t">Pack</span><span class="d">Give up this hand. You lose the 50 you have put in, nothing more.</span></button>
+    </div>
+    <p style="text-align:center;margin:22px 0 0"><button class="act" id="playDemo" style="display:inline-flex;min-height:56px;padding:0 22px;align-items:center;justify-content:center"><span class="t" style="font-size:18px">Try it: tap Chaal and watch the turn pass</span></button></p>
+  </section>
+
+  <!-- SEATS -->
+  <section class="frame">
+    <h2 class="title">At the table</h2>
+    <div class="seats">
+      <div class="seat"><div class="seat-top"><span class="nm">Asha</span><span class="dealer">Dealer</span></div><span class="tag">Blind</span><div class="row"><span>Chips</span><b>990</b></div><div class="row"><span>In this hand</span><b>30</b></div></div>
+      <div class="seat now"><div class="seat-top"><span class="nm">Meera</span><span class="now-l">Her turn</span></div><span class="tag">Seen</span><div class="row"><span>Chips</span><b>950</b></div><div class="row"><span>In this hand</span><b>50</b></div></div>
+      <div class="seat out"><div class="seat-top"><span class="nm">Ravi</span></div><span class="tag">Packed</span><div class="row"><span>Chips</span><b>980</b></div><div class="row"><span>In this hand</span><b>20</b></div></div>
+    </div>
+    <p style="text-align:center;color:var(--grey);font-size:16px;margin:20px 0 0">Every seat is the same ivory tile. The status is a word, never a colour. Only the player whose turn it is gets gold.</p>
+  </section>
+
+  <!-- WINNER -->
+  <section class="frame">
+    <h2 class="title">The winner</h2>
+    <div class="plaque">
+      <svg class="arch" viewBox="0 0 200 84" aria-hidden="true">
+        <path d="M8 84 V52 C8 34 52 30 82 14 Q96 6 100 0 Q104 6 118 14 C148 30 192 34 192 52 V84" fill="none" stroke="#A3822F" stroke-width="2"/>
+        <path d="M17 84 V54 C17 40 56 37 85 22 Q96 15 100 10 Q104 15 115 22 C144 37 183 40 183 54 V84" fill="none" stroke="#A3822F" stroke-width="1"/>
+      </svg>
+      <div class="pl-k">Winner</div>
+      <div class="pl-name">Asha wins 140</div>
+      <div class="pl-flavour">Won at the show with a Colour</div>
+      <div class="nets"><span>Asha<b class="up">+90</b></span><span>Ravi<b class="down">−60</b></span><span>Meera<b class="down">−30</b></span></div>
+    </div>
+  </section>
+
+  <!-- SCORES -->
+  <section class="frame">
+    <h2 class="title">Who’s up, who’s down</h2>
+    <div class="lb"><div class="lb-rank">1</div><div class="lb-name">Asha<span>Won 3 of 4 · best hand Colour</span></div><div class="lb-net up">+190</div><div class="lb-chips"><span>Chips</span><b>1,190</b></div></div>
+    <div class="lb"><div class="lb-rank">2</div><div class="lb-name">Ravi<span>Won 1 of 4</span></div><div class="lb-net down">−10</div><div class="lb-chips"><span>Chips</span><b>990</b></div></div>
+    <div class="lb"><div class="lb-rank">3</div><div class="lb-name">Meera<span>Won 0 of 4</span></div><div class="lb-net down">−180</div><div class="lb-chips"><span>Chips</span><b>820</b></div></div>
+  </section>
+
+  <!-- TYPE -->
+  <section class="frame">
+    <h2 class="title">The lettering</h2>
+    <div class="spec"><div class="k"><b>The turn</b>Cormorant Garamond 700 · 64px · centred</div><div style="font-family:var(--serif);font-weight:700;font-size:52px;line-height:1">Meera’s turn</div></div>
+    <div class="spec"><div class="k"><b>Titles and labels</b>Cormorant SC 700 · 18–25px · capitals and small capitals, spaced</div><div class="kicker" style="text-align:left;color:var(--navy);font-size:24px">At the table · Pot · Stake</div></div>
+    <div class="spec"><div class="k"><b>Money</b>Cormorant Garamond 700 · even-height figures</div><div style="font-family:var(--serif);font-weight:700;font-size:46px;line-height:1;color:var(--navy)">1,240 &nbsp;<span class="up">+190</span> &nbsp;<span class="down">−10</span></div></div>
+    <div class="spec"><div class="k"><b>Anything you act on</b>Instrument Sans 500–600 · 18px and up</div><div style="font-size:20px;font-weight:500">Pay 40 without looking. The stake doubles for everyone after you.</div></div>
+    <div class="spec"><div class="k"><b>One flourish</b>Cormorant Garamond italic · only the winner’s line</div><div style="font-family:var(--serif);font-style:italic;font-weight:600;font-size:26px;color:var(--grey)">Won at the show with a Colour</div></div>
+  </section>
+
+  <!-- SHAPE RULES -->
+  <section class="frame">
+    <h2 class="title">The shapes</h2>
+    <ul class="dia">
+      <li><b>Square corners.</b> <span>Engraved brass and letterpress cards, not phone-app bubbles. 2px at most.</span></li>
+      <li><b>One frame per section.</b> <span>A gold double line, set in from the edge like a menu card. No boxes inside boxes.</span></li>
+      <li><b>Centred and symmetrical.</b> <span>Titles sit between two short gold rules; the player’s name sits on the centre line.</span></li>
+      <li><b>One navy band.</b> <span>Only the masthead is filled navy. Titles are navy lettering on ivory, so headings never look like buttons.</span></li>
+      <li><b>One solid button.</b> <span>The main move is solid green with a gold inner line; every other move is an ivory plate with a navy outline; Pack has a garnet outline.</span></li>
+      <li><b>Honour has a shape.</b> <span>Gold frame for the current player; an arched plaque for the winner. Nothing else is decorated.</span></li>
+      <li><b>Never:</b> <span>pills, pastel alert boxes, shadows, gradients, glows, emoji, or a colour that changes with a player’s status.</span></li>
+    </ul>
+  </section>
+</main>
+<script>
+(function(){
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pot = document.getElementById('pot'), name = document.getElementById('turnName'), sub = document.getElementById('turnSub');
+  let played = false;
+  function countTo(el, from, to, ms){
+    if (reduce) { el.textContent = to.toLocaleString('en-IN'); return; }
+    const t0 = performance.now();
+    (function step(t){ const p = Math.min(1,(t-t0)/ms), e = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(from+(to-from)*e).toLocaleString('en-IN'); if (p<1) requestAnimationFrame(step); })(t0);
+  }
+  function swap(text, html){
+    if (reduce) { name.textContent = text; sub.innerHTML = html; return; }
+    name.className = 'turn-name leave';
+    setTimeout(() => { name.textContent = text; sub.innerHTML = html; name.className = 'turn-name enter';
+      requestAnimationFrame(() => requestAnimationFrame(() => { name.className = 'turn-name settle'; })); }, 170);
+  }
+  function play(){
+    if (!played) { countTo(pot,140,180,420); swap('Asha’s turn','<span class="tag">Blind</span> has not looked at the cards, so bets cost half'); }
+    else { pot.textContent='140'; swap('Meera’s turn','<span class="tag">Seen</span> has looked at the cards, so every bet costs double'); }
+    played = !played;
+  }
+  document.getElementById('playDemo').addEventListener('click', play);
+  document.getElementById('chaalBtn').addEventListener('click', play);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teen Patti Colour Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=EB+Garamond:wght@600;700&family=Libre+Caslon+Display&family=Bodoni+Moda:wght@700&family=Prata&family=Cinzel:wght@600;700&family=Rozha+One&family=Instrument+Sans:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;600&family=Figtree:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:"Cormorant Garamond", Georgia, serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --n-ink:#1A1A1A; --n-muted:#5E5E5E; --n-line:#DCDCDC; --n-page:#F3F3F1;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--n-page); color:var(--n-ink); font-family:var(--sans); font-size:18px; line-height:1.6; font-variant-numeric:lining-nums; -webkit-font-smoothing:antialiased}
+.wrap{max-width:960px; margin:0 auto; padding:0 20px 100px}
+@media (max-width:640px){ .wrap{padding:0 16px 80px} }
+.mast{background:#fff; border-bottom:1px solid var(--n-line)}
+.mast-in{max-width:960px; margin:0 auto; padding:22px 20px; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:12px}
+.wordmark{font-family:var(--serif); font-weight:700; font-size:32px; line-height:1}
+.mast-note{color:var(--n-muted); font-size:15px}
+h1{font-family:var(--serif); font-weight:700; font-size:clamp(40px,7vw,60px); line-height:1.04; margin:52px 0 12px}
+.lead{font-size:20px; color:#3E3E3E; max-width:720px; margin:0}
+h2.sec{font-family:var(--serif); font-weight:700; font-size:38px; margin:64px 0 6px}
+.sec-sub{color:var(--n-muted); margin:0 0 20px; max-width:720px}
+.plain-card{background:#fff; border:1px solid var(--n-line); border-radius:12px; padding:28px; margin-top:22px}
+ol.method{counter-reset:m; list-style:none; padding:0; margin:0}
+ol.method li{counter-increment:m; position:relative; padding-left:48px; margin:0 0 18px}
+ol.method li:last-child{margin-bottom:0}
+ol.method li::before{content:counter(m); position:absolute; left:0; top:-6px; font-family:var(--serif); font-weight:700; font-size:32px; width:32px; text-align:right}
+ol.method b{display:block}
+ol.method span{color:#3E3E3E}
+.tag-rec{display:inline-block; font:600 12px var(--sans); letter-spacing:.14em; text-transform:uppercase; padding:4px 10px; border-radius:6px; background:#1A1A1A; color:#fff; vertical-align:middle; margin-left:10px}
+
+/* ---------- palette demo (all colours come from CSS variables set per palette) ---------- */
+.pal{margin-top:44px}
+.pal-head{display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+.pal-head h3{font-family:var(--serif); font-weight:700; font-size:32px; margin:0}
+.pal-why{color:#3E3E3E; margin:0 0 16px; max-width:760px}
+.demo{background:var(--page); border:1px solid var(--line); border-radius:14px; padding:22px; color:var(--ink)}
+@media (max-width:640px){ .demo{padding:12px} }
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden}
+.card + .card{margin-top:16px}
+.band{background:var(--brandDeep); color:#fff; padding:14px 24px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap}
+.band h4{font-family:var(--serif); font-weight:700; font-size:28px; margin:0; line-height:1.15}
+.band span{color:var(--goldOnBrand); font-weight:600; font-size:15px; letter-spacing:.02em}
+.cbody{padding:22px 24px}
+@media (max-width:640px){ .band{padding:12px 16px} .cbody{padding:16px} }
+.status{display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); border-radius:10px; overflow:hidden}
+.status div{padding:12px 16px; border-right:1px solid var(--line)}
+.status div:last-child{border-right:none}
+.lbl{display:block; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.val{font-family:var(--serif); font-weight:700; font-size:34px; line-height:1.1; font-variant-numeric:lining-nums tabular-nums}
+.val.pot{color:var(--brand)}
+.eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--brand); margin-top:22px}
+.turn{font-family:var(--serif); font-weight:700; font-size:clamp(40px,6vw,54px); line-height:1; margin:8px 0 8px}
+.sub{color:var(--muted); font-size:16px}
+.pill{display:inline-block; font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border-radius:6px; vertical-align:middle}
+.pill-seen{background:var(--positiveTint); color:var(--positive)}
+.pill-blind{background:var(--brandTint); color:var(--brand)}
+.pill-packed{background:var(--cautionTint); color:var(--caution)}
+.acts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px}
+@media (max-width:700px){ .acts{grid-template-columns:1fr} }
+.btn{display:flex; flex-direction:column; gap:3px; text-align:left; min-height:92px; padding:16px 20px; border-radius:12px; border:1.5px solid transparent; font-family:var(--sans); cursor:pointer; transition:background-color .15s, border-color .15s, transform .08s}
+.btn:active{transform:translateY(1px)}
+.btn-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.btn-title{font-size:20px; font-weight:600}
+.btn-amt{font-family:var(--serif); font-weight:700; font-size:30px; line-height:1; font-variant-numeric:lining-nums tabular-nums}
+.btn-desc{font-size:15px; line-height:1.42}
+.b-main{background:var(--brand); color:#fff} .b-main .btn-desc{color:rgba(255,255,255,.86)} .b-main:hover{background:var(--brandDeep)}
+.b-second{background:#fff; color:var(--ink); border-color:var(--ink)} .b-second .btn-desc{color:var(--muted)} .b-second:hover{background:var(--page)}
+.b-quiet{background:#fff; color:var(--ink); border-color:var(--line)} .b-quiet .btn-desc{color:var(--muted)} .b-quiet:hover{border-color:var(--ink)}
+.b-pack{background:var(--cautionTint); color:var(--caution); border-color:var(--cautionLine)} .b-pack:hover{border-color:var(--caution)}
+.seats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:700px){ .seats{grid-template-columns:1fr} }
+.seat{border:1px solid var(--line); border-radius:10px; padding:12px 16px; background:#fff}
+.seat.on{background:var(--goldTint); border-color:var(--goldLine); box-shadow:inset 5px 0 0 var(--goldLine)}
+.seat.out{color:var(--muted)}
+.seat-n{font-weight:600; font-size:19px; display:flex; justify-content:space-between; align-items:center}
+.seat-r{display:flex; justify-content:space-between; font-size:15.5px; color:var(--muted); margin-top:3px}
+.seat-r b{color:var(--ink); font-weight:600}
+.seat.out .seat-r b{color:var(--muted)}
+.dealer{font-size:11px; font-weight:700; border:1.5px solid var(--ink); border-radius:50%; width:24px; height:24px; display:inline-grid; place-items:center}
+.lb{display:grid; grid-template-columns:40px 1fr auto; gap:16px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line)}
+.lb:last-child{border-bottom:none}
+.lb-rank{font-family:var(--serif); font-weight:700; font-size:30px; color:var(--brand); text-align:center}
+.lb-name{font-weight:600; font-size:19px; line-height:1.25} .lb-name span{display:block; font-weight:400; font-size:14.5px; color:var(--muted)}
+.lb-net{font-family:var(--serif); font-weight:700; font-size:32px; font-variant-numeric:lining-nums tabular-nums}
+.up{color:var(--positive)} .down{color:var(--caution)}
+.win{margin-top:14px; background:var(--positiveTint); border-radius:10px; padding:14px 18px; color:var(--positive); font-weight:600}
+.win b{font-family:var(--serif); font-size:26px; color:var(--ink); margin-right:8px}
+.roles{display:grid; grid-template-columns:repeat(auto-fill,minmax(205px,1fr)); gap:10px; margin-top:16px}
+.role{display:flex; gap:10px; align-items:center; background:#fff; border:1px solid var(--n-line); border-radius:10px; padding:8px 10px}
+.role i{width:34px; height:34px; border-radius:7px; border:1px solid rgba(0,0,0,.12); flex:none}
+.role div{font-size:13.5px; line-height:1.35}
+.role b{display:block; font-size:14px}
+.checks{margin:14px 0 0; font-size:14.5px; color:var(--n-muted)}
+.checks b{color:var(--n-ink); font-weight:600}
+
+/* ramps */
+.ramp{margin-top:22px}
+.ramp-name{font-weight:600; margin-bottom:6px}
+.ramp-name span{font-weight:400; color:var(--n-muted); font-size:15px}
+.ramp-row{display:grid; grid-template-columns:repeat(11,1fr); gap:4px}
+@media (max-width:700px){ .ramp-row{grid-template-columns:repeat(6,1fr)} }
+.sw{border-radius:8px; height:56px; border:1px solid rgba(0,0,0,.08); position:relative}
+.sw.pick{outline:3px solid #1A1A1A; outline-offset:2px}
+.sw-meta{font-size:11.5px; line-height:1.3; color:var(--n-muted); margin-top:4px}
+.sw-meta b{color:var(--n-ink); font-weight:600; display:block}
+.sw-meta em{font-style:normal; color:#1A1A1A; font-weight:600; display:block}
+details.more{margin-top:26px}
+details.more summary{cursor:pointer; font-weight:600; min-height:44px; display:flex; align-items:center}
+
+/* fonts */
+.font-row{padding:18px 0; border-bottom:1px solid var(--n-line)}
+.font-row:last-child{border-bottom:none}
+.font-sample{font-size:44px; line-height:1.1}
+.font-body{font-size:19px; line-height:1.55}
+.font-spec{font-size:14.5px; color:var(--n-muted); margin-top:6px}
+.font-spec b{color:var(--n-ink); font-weight:600}
+</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in"><div class="wordmark">Teen Patti</div><div class="mast-note">Colour study, for choosing</div></div></header>
+<main class="wrap">
+  <h1>Royal colours, chosen by rule, then by eye.</h1>
+  <p class="lead">Blues, greens, golds, beiges and greys. Each family is drawn out into eleven shades; a simple rule picks the right shade for each job, so text is always easy to read; then you choose the combination you like best.</p>
+
+  <h2 class="sec">How I chose them</h2>
+  <div class="plain-card"><ol class="method">
+    <li><b>Start from royal things, not from a colour wheel.</b><span>Sapphire and lapis blue, emerald and jade, gold leaf and saffron, parchment and ivory, slate and stone. These are the families.</span></li>
+    <li><b>Draw each family out into eleven even shades.</b><span>From the palest (50) to the darkest (950). The shades are made with a colour model that matches how the eye sees, so each step looks equally different from the next.</span></li>
+    <li><b>Give every job a rule, and let the rule pick the shade.</b><span>Main button and header band: the lightest blue where white text still has at least 7 to 1 contrast (the strictest reading standard). Good-news and caution text: the lightest green or red with at least 5 to 1 on white. Gold: never for text on white (it is too faint); only for thin lines, a pale highlight behind the current player, and lettering on the dark blue band, where it reads clearly.</span></li>
+    <li><b>Put the result on a real screen and judge by eye.</b><span>Below, every palette is applied to the same turn screen and scoreboard. The numbers next to each one are the contrast checks. One nudge was made by eye: the rule picked a red that looked coral, so caution moved one shade deeper to a true garnet.</span></li>
+  </ol></div>
+
+  <h2 class="sec">Three palettes on the same screen</h2>
+  <p class="sec-sub">Same fonts, same layout; only the colours change. The current player’s seat is highlighted in the pale gold of each palette.</p>
+  <div id="palettes"></div>
+
+  <h2 class="sec">The shades behind the recommendation</h2>
+  <p class="sec-sub">Each row is one family, palest to darkest. Outlined shades are the ones the rules picked. The small number is contrast against white: 4.5 or more is readable text, 7 or more is the strict standard.</p>
+  <div class="plain-card" id="ramps"></div>
+
+  <h2 class="sec">Other font options</h2>
+  <p class="sec-sub">You are happy with the current pair, so this is just the menu. All are free and load the same way.</p>
+  <div class="plain-card" id="fonts"></div>
+</main>
+<script>
+const DATA = {"ramps": {"navy": {"label": "Royal navy", "hue": 262, "shades": [{"g": 50, "hex": "#F2F7FF", "onWhite": 1.08}, {"g": 100, "hex": "#E6EFFF", "onWhite": 1.16}, {"g": 200, "hex": "#CDDFFF", "onWhite": 1.35}, {"g": 300, "hex": "#AAC8FF", "onWhite": 1.69}, {"g": 400, "hex": "#81AAF7", "onWhite": 2.33}, {"g": 500, "hex": "#5B8AE2", "onWhite": 3.4}, {"g": 600, "hex": "#3E6DC8", "onWhite": 4.97}, {"g": 700, "hex": "#2B56A9", "onWhite": 6.98}, {"g": 800, "hex": "#1C4088", "onWhite": 9.82}, {"g": 900, "hex": "#102C64", "onWhite": 13.41}, {"g": 950, "hex": "#051B49", "onWhite": 16.67}]}, "peacock": {"label": "Peacock blue", "hue": 222, "shades": [{"g": 50, "hex": "#EEF9FD", "onWhite": 1.07}, {"g": 100, "hex": "#DEF3FA", "onWhite": 1.15}, {"g": 200, "hex": "#BFE5F3", "onWhite": 1.34}, {"g": 300, "hex": "#98D2E6", "onWhite": 1.65}, {"g": 400, "hex": "#67B8D3", "onWhite": 2.24}, {"g": 500, "hex": "#2F9AB9", "onWhite": 3.26}, {"g": 600, "hex": "#007E9C", "onWhite": 4.7}, {"g": 700, "hex": "#00657E", "onWhite": 6.64}, {"g": 800, "hex": "#004D61", "onWhite": 9.4}, {"g": 900, "hex": "#003645", "onWhite": 13.01}, {"g": 950, "hex": "#00242E", "onWhite": 16.26}]}, "indigo": {"label": "Indigo", "hue": 280, "shades": [{"g": 50, "hex": "#F5F6FF", "onWhite": 1.08}, {"g": 100, "hex": "#EBEDFF", "onWhite": 1.16}, {"g": 200, "hex": "#D7DBFF", "onWhite": 1.36}, {"g": 300, "hex": "#BCC2FF", "onWhite": 1.71}, {"g": 400, "hex": "#9CA2F5", "onWhite": 2.36}, {"g": 500, "hex": "#7C80E0", "onWhite": 3.49}, {"g": 600, "hex": "#6363C6", "onWhite": 5.08}, {"g": 700, "hex": "#4E4DA8", "onWhite": 7.12}, {"g": 800, "hex": "#3A3887", "onWhite": 10.02}, {"g": 900, "hex": "#282663", "onWhite": 13.57}, {"g": 950, "hex": "#191648", "onWhite": 16.8}]}, "emerald": {"label": "Emerald", "hue": 158, "shades": [{"g": 50, "hex": "#EFFAF3", "onWhite": 1.07}, {"g": 100, "hex": "#DFF5E7", "onWhite": 1.14}, {"g": 200, "hex": "#C2E9D1", "onWhite": 1.32}, {"g": 300, "hex": "#9CD7B4", "onWhite": 1.64}, {"g": 400, "hex": "#6EBF92", "onWhite": 2.2}, {"g": 500, "hex": "#3BA26F", "onWhite": 3.19}, {"g": 600, "hex": "#008754", "onWhite": 4.57}, {"g": 700, "hex": "#006D42", "onWhite": 6.43}, {"g": 800, "hex": "#005331", "onWhite": 9.2}, {"g": 900, "hex": "#003B22", "onWhite": 12.74}, {"g": 950, "hex": "#002714", "onWhite": 16.15}]}, "jade": {"label": "Jade", "hue": 170, "shades": [{"g": 50, "hex": "#EFFAF5", "onWhite": 1.07}, {"g": 100, "hex": "#E1F4EC", "onWhite": 1.14}, {"g": 200, "hex": "#C5E7DA", "onWhite": 1.33}, {"g": 300, "hex": "#A1D4C1", "onWhite": 1.65}, {"g": 400, "hex": "#75BCA3", "onWhite": 2.22}, {"g": 500, "hex": "#479F83", "onWhite": 3.2}, {"g": 600, "hex": "#1E8469", "onWhite": 4.61}, {"g": 700, "hex": "#006B53", "onWhite": 6.51}, {"g": 800, "hex": "#00523F", "onWhite": 9.22}, {"g": 900, "hex": "#003A2B", "onWhite": 12.8}, {"g": 950, "hex": "#00261C", "onWhite": 16.23}]}, "sage": {"label": "Sage", "hue": 140, "shades": [{"g": 50, "hex": "#F4F8F3", "onWhite": 1.07}, {"g": 100, "hex": "#EAF1E8", "onWhite": 1.15}, {"g": 200, "hex": "#D6E2D3", "onWhite": 1.34}, {"g": 300, "hex": "#BBCDB7", "onWhite": 1.68}, {"g": 400, "hex": "#9BB396", "onWhite": 2.26}, {"g": 500, "hex": "#7A9574", "onWhite": 3.29}, {"g": 600, "hex": "#5F7A59", "onWhite": 4.76}, {"g": 700, "hex": "#4A6344", "onWhite": 6.65}, {"g": 800, "hex": "#364C32", "onWhite": 9.39}, {"g": 900, "hex": "#253621", "onWhite": 12.9}, {"g": 950, "hex": "#162313", "onWhite": 16.36}]}, "gold": {"label": "Old gold", "hue": 86, "shades": [{"g": 50, "hex": "#FBF6EB", "onWhite": 1.08}, {"g": 100, "hex": "#F7EED9", "onWhite": 1.15}, {"g": 200, "hex": "#EDDCB7", "onWhite": 1.35}, {"g": 300, "hex": "#DEC48D", "onWhite": 1.7}, {"g": 400, "hex": "#C8A659", "onWhite": 2.32}, {"g": 500, "hex": "#AD861B", "onWhite": 3.39}, {"g": 600, "hex": "#8F6C00", "onWhite": 4.87}, {"g": 700, "hex": "#735600", "onWhite": 6.86}, {"g": 800, "hex": "#584100", "onWhite": 9.67}, {"g": 900, "hex": "#3F2D00", "onWhite": 13.23}, {"g": 950, "hex": "#2A1D00", "onWhite": 16.48}]}, "saffron": {"label": "Saffron", "hue": 68, "shades": [{"g": 50, "hex": "#FFF5EB", "onWhite": 1.08}, {"g": 100, "hex": "#FEEBD8", "onWhite": 1.16}, {"g": 200, "hex": "#F9D7B4", "onWhite": 1.36}, {"g": 300, "hex": "#EFBD87", "onWhite": 1.71}, {"g": 400, "hex": "#DC9C50", "onWhite": 2.36}, {"g": 500, "hex": "#C37900", "onWhite": 3.47}, {"g": 600, "hex": "#9F6200", "onWhite": 4.97}, {"g": 700, "hex": "#804E00", "onWhite": 6.98}, {"g": 800, "hex": "#623B00", "onWhite": 9.79}, {"g": 900, "hex": "#462800", "onWhite": 13.43}, {"g": 950, "hex": "#2F1900", "onWhite": 16.67}]}, "mustard": {"label": "Mustard", "hue": 95, "shades": [{"g": 50, "hex": "#FAF7EC", "onWhite": 1.07}, {"g": 100, "hex": "#F4EFDB", "onWhite": 1.15}, {"g": 200, "hex": "#E8DEBB", "onWhite": 1.35}, {"g": 300, "hex": "#D6C792", "onWhite": 1.69}, {"g": 400, "hex": "#BEAA61", "onWhite": 2.3}, {"g": 500, "hex": "#A28B2D", "onWhite": 3.35}, {"g": 600, "hex": "#867000", "onWhite": 4.85}, {"g": 700, "hex": "#6C5900", "onWhite": 6.85}, {"g": 800, "hex": "#534400", "onWhite": 9.57}, {"g": 900, "hex": "#3A2F00", "onWhite": 13.24}, {"g": 950, "hex": "#271F00", "onWhite": 16.38}]}, "parchment": {"label": "Parchment beige", "hue": 82, "shades": [{"g": 50, "hex": "#F8F7F4", "onWhite": 1.07}, {"g": 100, "hex": "#F0EEEA", "onWhite": 1.16}, {"g": 200, "hex": "#E2DDD6", "onWhite": 1.35}, {"g": 300, "hex": "#CDC6BB", "onWhite": 1.69}, {"g": 400, "hex": "#B2AA9B", "onWhite": 2.3}, {"g": 500, "hex": "#948B7A", "onWhite": 3.37}, {"g": 600, "hex": "#7A705F", "onWhite": 4.87}, {"g": 700, "hex": "#625A4A", "onWhite": 6.82}, {"g": 800, "hex": "#4B4437", "onWhite": 9.63}, {"g": 900, "hex": "#352F25", "onWhite": 13.25}, {"g": 950, "hex": "#231F16", "onWhite": 16.42}]}, "sand": {"label": "Sand", "hue": 72, "shades": [{"g": 50, "hex": "#F9F6F3", "onWhite": 1.08}, {"g": 100, "hex": "#F2EEE8", "onWhite": 1.16}, {"g": 200, "hex": "#E5DDD3", "onWhite": 1.34}, {"g": 300, "hex": "#D1C5B7", "onWhite": 1.7}, {"g": 400, "hex": "#B8A895", "onWhite": 2.31}, {"g": 500, "hex": "#9B8973", "onWhite": 3.38}, {"g": 600, "hex": "#806E58", "onWhite": 4.9}, {"g": 700, "hex": "#685843", "onWhite": 6.85}, {"g": 800, "hex": "#514231", "onWhite": 9.66}, {"g": 900, "hex": "#392E21", "onWhite": 13.23}, {"g": 950, "hex": "#261D12", "onWhite": 16.58}]}, "slate": {"label": "Slate grey", "hue": 258, "shades": [{"g": 50, "hex": "#F5F7F9", "onWhite": 1.07}, {"g": 100, "hex": "#ECEFF3", "onWhite": 1.15}, {"g": 200, "hex": "#D9DEE6", "onWhite": 1.35}, {"g": 300, "hex": "#C1C8D2", "onWhite": 1.69}, {"g": 400, "hex": "#A2ACB9", "onWhite": 2.3}, {"g": 500, "hex": "#828D9D", "onWhite": 3.36}, {"g": 600, "hex": "#687282", "onWhite": 4.86}, {"g": 700, "hex": "#525C6A", "onWhite": 6.78}, {"g": 800, "hex": "#3D4652", "onWhite": 9.56}, {"g": 900, "hex": "#2A313A", "onWhite": 13.13}, {"g": 950, "hex": "#1A2027", "onWhite": 16.41}]}, "stone": {"label": "Stone grey", "hue": 70, "shades": [{"g": 50, "hex": "#F7F6F5", "onWhite": 1.08}, {"g": 100, "hex": "#F0EEEC", "onWhite": 1.16}, {"g": 200, "hex": "#E0DDDA", "onWhite": 1.35}, {"g": 300, "hex": "#CBC6C2", "onWhite": 1.69}, {"g": 400, "hex": "#AFAAA3", "onWhite": 2.31}, {"g": 500, "hex": "#928B84", "onWhite": 3.36}, {"g": 600, "hex": "#777069", "onWhite": 4.88}, {"g": 700, "hex": "#605A53", "onWhite": 6.81}, {"g": 800, "hex": "#49443E", "onWhite": 9.63}, {"g": 900, "hex": "#34302B", "onWhite": 13.09}, {"g": 950, "hex": "#221F1B", "onWhite": 16.41}]}, "garnet": {"label": "Garnet", "hue": 24, "shades": [{"g": 50, "hex": "#FFF4F3", "onWhite": 1.08}, {"g": 100, "hex": "#FFE8E6", "onWhite": 1.17}, {"g": 200, "hex": "#FFD1CD", "onWhite": 1.38}, {"g": 300, "hex": "#FDB1AB", "onWhite": 1.74}, {"g": 400, "hex": "#ED8B86", "onWhite": 2.43}, {"g": 500, "hex": "#D56561", "onWhite": 3.58}, {"g": 600, "hex": "#B94644", "onWhite": 5.22}, {"g": 700, "hex": "#9B3031", "onWhite": 7.34}, {"g": 800, "hex": "#7B1E21", "onWhite": 10.24}, {"g": 900, "hex": "#5A1114", "onWhite": 13.77}, {"g": 950, "hex": "#400408", "onWhite": 16.95}]}}, "palettes": [{"name": "Navy, Emerald and Old Gold", "families": ["navy", "emerald", "gold", "parchment", "slate", "garnet"], "roles": {"ink": {"fam": "slate", "g": 950, "hex": "#1A2027"}, "muted": {"fam": "slate", "g": 700, "hex": "#525C6A"}, "page": {"fam": "parchment", "g": 50, "hex": "#F8F7F4"}, "line": {"fam": "parchment", "g": 200, "hex": "#E2DDD6"}, "brand": {"fam": "navy", "g": 800, "hex": "#1C4088"}, "brandDeep": {"fam": "navy", "g": 900, "hex": "#102C64"}, "brandTint": {"fam": "navy", "g": 50, "hex": "#F2F7FF"}, "positive": {"fam": "emerald", "g": 700, "hex": "#006D42"}, "positiveTint": {"fam": "emerald", "g": 50, "hex": "#EFFAF3"}, "caution": {"fam": "garnet", "g": 700, "hex": "#9B3031", "eye": true}, "cautionTint": {"fam": "garnet", "g": 50, "hex": "#FFF4F3"}, "cautionLine": {"fam": "garnet", "g": 200, "hex": "#FFD1CD"}, "goldLine": {"fam": "gold", "g": 500, "hex": "#AD861B"}, "goldTint": {"fam": "gold", "g": 100, "hex": "#F7EED9"}, "goldOnBrand": {"fam": "gold", "g": 300, "hex": "#DEC48D"}}, "checks": {"ink on page": 15.32, "muted on page": 6.33, "white on brand": 9.82, "positive on white": 6.43, "positive on its tint": 6.01, "caution on its tint": 4.84, "gold line on white": 3.39, "gold text on brand band": 5.79, "brand text on page": 9.17, "ink on gold tint": 14.21}}, {"name": "Peacock, Jade and Saffron", "families": ["peacock", "jade", "saffron", "sand", "stone", "garnet"], "roles": {"ink": {"fam": "stone", "g": 950, "hex": "#221F1B"}, "muted": {"fam": "stone", "g": 700, "hex": "#605A53"}, "page": {"fam": "sand", "g": 50, "hex": "#F9F6F3"}, "line": {"fam": "sand", "g": 200, "hex": "#E5DDD3"}, "brand": {"fam": "peacock", "g": 800, "hex": "#004D61"}, "brandDeep": {"fam": "peacock", "g": 900, "hex": "#003645"}, "brandTint": {"fam": "peacock", "g": 50, "hex": "#EEF9FD"}, "positive": {"fam": "jade", "g": 700, "hex": "#006B53"}, "positiveTint": {"fam": "jade", "g": 50, "hex": "#EFFAF5"}, "caution": {"fam": "garnet", "g": 700, "hex": "#9B3031", "eye": true}, "cautionTint": {"fam": "garnet", "g": 50, "hex": "#FFF4F3"}, "cautionLine": {"fam": "garnet", "g": 200, "hex": "#FFD1CD"}, "goldLine": {"fam": "saffron", "g": 500, "hex": "#C37900"}, "goldTint": {"fam": "saffron", "g": 100, "hex": "#FEEBD8"}, "goldOnBrand": {"fam": "saffron", "g": 300, "hex": "#EFBD87"}}, "checks": {"ink on page": 15.24, "muted on page": 6.32, "white on brand": 9.4, "positive on white": 6.51, "positive on its tint": 6.09, "caution on its tint": 4.84, "gold line on white": 3.47, "gold text on brand band": 5.5, "brand text on page": 8.73, "ink on gold tint": 14.13}}, {"name": "Indigo, Sage and Mustard", "families": ["indigo", "sage", "mustard", "parchment", "slate", "garnet"], "roles": {"ink": {"fam": "slate", "g": 950, "hex": "#1A2027"}, "muted": {"fam": "slate", "g": 700, "hex": "#525C6A"}, "page": {"fam": "parchment", "g": 50, "hex": "#F8F7F4"}, "line": {"fam": "parchment", "g": 200, "hex": "#E2DDD6"}, "brand": {"fam": "indigo", "g": 700, "hex": "#4E4DA8"}, "brandDeep": {"fam": "indigo", "g": 800, "hex": "#3A3887"}, "brandTint": {"fam": "indigo", "g": 50, "hex": "#F5F6FF"}, "positive": {"fam": "sage", "g": 700, "hex": "#4A6344"}, "positiveTint": {"fam": "sage", "g": 50, "hex": "#F4F8F3"}, "caution": {"fam": "garnet", "g": 700, "hex": "#9B3031", "eye": true}, "cautionTint": {"fam": "garnet", "g": 50, "hex": "#FFF4F3"}, "cautionLine": {"fam": "garnet", "g": 200, "hex": "#FFD1CD"}, "goldLine": {"fam": "mustard", "g": 500, "hex": "#A28B2D"}, "goldTint": {"fam": "mustard", "g": 100, "hex": "#F4EFDB"}, "goldOnBrand": {"fam": "mustard", "g": 200, "hex": "#E8DEBB"}}, "checks": {"ink on page": 15.32, "muted on page": 6.33, "white on brand": 7.12, "positive on white": 6.65, "positive on its tint": 6.19, "caution on its tint": 4.84, "gold line on white": 3.35, "gold text on brand band": 5.29, "brand text on page": 6.64, "ink on gold tint": 14.23}}]};
+const ROLE_NAMES = {ink:'Ink', muted:'Grey text', page:'Page', line:'Lines', brand:'Main button', brandDeep:'Header band', brandTint:'Blind tag',
+  positive:'Good news', positiveTint:'Good news tint', caution:'Caution', cautionTint:'Caution tint', cautionLine:'Caution edge',
+  goldLine:'Gold line', goldTint:'Current player', goldOnBrand:'Gold on band'};
+const WHY = [
+  'Recommended. Deep royal navy for authority, emerald for good news, old gold as the royal accent, on warm parchment with slate-grey text. It is the most “royal” and also the calmest, so it will not tire the eye over a long evening.',
+  'Peacock blue, jade and saffron: warmer and more Indian, closer to a festive Diwali feel. Slightly less formal than navy.',
+  'Indigo, sage and mustard: softer and more relaxed. Elegant, but the purple-blue reads less “royal” and more “boutique”.'
+];
+function lum(hx){ const c=[1,3,5].map(i=>parseInt(hx.slice(i,i+2),16)/255).map(v=>v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)); return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]; }
+function cr(a,b){ const x=lum(a),y=lum(b); return ((Math.max(x,y)+0.05)/(Math.min(x,y)+0.05)).toFixed(1); }
+
+function demo(p){
+  const vars = Object.entries(p.roles).map(([k,v])=>'--'+k+':'+v.hex).join(';');
+  return '<div class="demo" style="'+vars+'">' +
+    '<div class="card"><div class="band"><h4>Hand 3</h4><span>Dealer Asha · Pot 140 · Stake 20</span></div><div class="cbody">' +
+      '<div class="status"><div><span class="lbl">Pot</span><span class="val pot">140</span></div><div><span class="lbl">Stake</span><span class="val">20</span></div><div><span class="lbl">Limit</span><span class="val" style="color:var(--muted)">10,240</span></div></div>' +
+      '<div class="eyebrow">Now playing</div><div class="turn">Meera’s turn</div>' +
+      '<div class="sub"><span class="pill pill-seen">Seen</span> &nbsp;Has looked at the cards, so every bet costs double.</div>' +
+      '<div class="acts">' +
+        '<button class="btn b-main"><span class="btn-top"><span class="btn-title">Chaal</span><span class="btn-amt">40</span></span><span class="btn-desc">Stay in. Pay 40, twice the stake, because you have seen your cards.</span></button>' +
+        '<button class="btn b-second"><span class="btn-top"><span class="btn-title">Raise</span><span class="btn-amt">80</span></span><span class="btn-desc">Pay 80. The stake doubles to 40 for everyone after you.</span></button>' +
+        '<button class="btn b-quiet"><span class="btn-top"><span class="btn-title">Side Show with Ravi</span><span class="btn-amt">40</span></span><span class="btn-desc">Compare cards with Ravi in secret. Lower hand packs.</span></button>' +
+        '<button class="btn b-pack"><span class="btn-top"><span class="btn-title">Pack</span></span><span class="btn-desc">Give up this hand. You lose the 50 you have put in.</span></button>' +
+      '</div></div></div>' +
+    '<div class="card"><div class="band"><h4>At the table</h4><span>Asha deals</span></div><div class="cbody">' +
+      '<div class="seats">' +
+        '<div class="seat"><div class="seat-n">Asha <span class="dealer">D</span></div><span class="pill pill-blind">Blind</span><div class="seat-r"><span>Chips</span><b>990</b></div><div class="seat-r"><span>In this hand</span><b>30</b></div></div>' +
+        '<div class="seat on"><div class="seat-n">Meera</div><span class="pill pill-seen">Seen</span><div class="seat-r"><span>Chips</span><b>950</b></div><div class="seat-r"><span>In this hand</span><b>50</b></div></div>' +
+        '<div class="seat out"><div class="seat-n">Ravi</div><span class="pill pill-packed">Packed</span><div class="seat-r"><span>Chips</span><b>980</b></div><div class="seat-r"><span>In this hand</span><b>20</b></div></div>' +
+      '</div>' +
+      '<div class="win"><b>Asha wins 140</b> Won at the show with a Colour.</div>' +
+    '</div></div>' +
+    '<div class="card"><div class="band"><h4>Who’s up, who’s down</h4><span>After 4 hands</span></div><div class="cbody" style="padding-top:6px;padding-bottom:6px">' +
+      '<div class="lb"><div class="lb-rank">1</div><div class="lb-name">Asha<span>Won 3 of 4 · best hand Colour</span></div><div class="lb-net up">+190</div></div>' +
+      '<div class="lb"><div class="lb-rank">2</div><div class="lb-name">Ravi<span>Won 1 of 4</span></div><div class="lb-net down">−10</div></div>' +
+    '</div></div></div>';
+}
+function roleChips(p){
+  return '<div class="roles">' + Object.entries(p.roles).map(([k,v]) =>
+    '<div class="role"><i style="background:'+v.hex+'"></i><div><b>'+ROLE_NAMES[k]+(v.eye?' (by eye)':'')+'</b>'+DATA.ramps[v.fam].label+' '+v.g+' · '+v.hex+'</div></div>').join('') + '</div>';
+}
+function checks(p){
+  const R = p.roles, W = '#FFFFFF';
+  const list = [['Ink on page', cr(R.ink.hex,R.page.hex)], ['White on main button', cr(W,R.brand.hex)], ['White on header band', cr(W,R.brandDeep.hex)],
+    ['Gold lettering on band', cr(R.goldOnBrand.hex,R.brandDeep.hex)], ['Good news on white', cr(R.positive.hex,W)], ['Caution on its tint', cr(R.caution.hex,R.cautionTint.hex)],
+    ['Grey text on page', cr(R.muted.hex,R.page.hex)], ['Gold line on white (lines need 3)', cr(R.goldLine.hex,W)]];
+  return '<p class="checks">Contrast checks: ' + list.map(x=>x[0]+' <b>'+x[1]+'</b>').join(' · ') + '</p>';
+}
+document.getElementById('palettes').innerHTML = DATA.palettes.map((p,i) =>
+  '<section class="pal"><div class="pal-head"><h3>'+(i+1)+'. '+p.name+'</h3>'+(i===0?'<span class="tag-rec">Recommended</span>':'')+'</div>' +
+  '<p class="pal-why">'+WHY[i]+'</p>' + demo(p) + roleChips(p) + checks(p) + '</section>').join('');
+
+function rampHTML(fam, picks){
+  const r = DATA.ramps[fam];
+  return '<div class="ramp"><div class="ramp-name">'+r.label+' <span>· hue '+r.hue+'°</span></div><div class="ramp-row">' +
+    r.shades.map(s => { const roles = picks.filter(x=>x.g===s.g).map(x=>ROLE_NAMES[x.role]);
+      return '<div><div class="sw'+(roles.length?' pick':'')+'" style="background:'+s.hex+'"></div><div class="sw-meta"><b>'+s.g+'</b>'+s.hex+' · '+s.onWhite.toFixed(1)+(roles.length?'<em>'+roles.join(', ')+'</em>':'')+'</div></div>'; }).join('') +
+    '</div></div>';
+}
+function picksFor(p, fam){ return Object.entries(p.roles).filter(([k,v])=>v.fam===fam).map(([k,v])=>({role:k,g:v.g})); }
+const rec = DATA.palettes[0];
+const recFams = ['navy','emerald','gold','parchment','slate','garnet'];
+const others = [[DATA.palettes[1],['peacock','jade','saffron','sand','stone']],[DATA.palettes[2],['indigo','sage','mustard']]];
+document.getElementById('ramps').innerHTML = recFams.map(f=>rampHTML(f,picksFor(rec,f))).join('') +
+  others.map(([p,fams]) => '<details class="more"><summary>Shades for “'+p.name+'”</summary>'+fams.map(f=>rampHTML(f,picksFor(p,f))).join('')+'</details>').join('');
+
+const HEAD = [
+  ['Cormorant Garamond', 700, 'Current choice. Classic French Garamond, fine and royal at large sizes.'],
+  ['EB Garamond', 700, 'A sturdier Garamond. Same family feeling, holds up better at smaller sizes.'],
+  ['Libre Caslon Display', 400, 'English classic, like an old book title page. Graceful, slightly lighter.'],
+  ['Bodoni Moda', 700, 'Fashion-magazine sharp, very high contrast between thick and thin strokes.'],
+  ['Prata', 400, 'Elegant high-contrast serif with soft curves. Feels like a printed invitation.'],
+  ['Cinzel', 700, 'Roman inscription capitals: royal and ceremonial. Best only for the logo and big titles, as it has no small letters.'],
+  ['Rozha One', 400, 'Bold, high-contrast display face from the Indian Type Foundry. The most Indian in flavour; best for big titles only.']
+];
+const BODY = [
+  ['Instrument Sans', 'Current choice. Crisp, slightly narrow, modern.'],
+  ['Hanken Grotesk', 'Plain and neutral, a little warmer. Very even.'],
+  ['Figtree', 'Friendly and round. Easiest for a child to read.'],
+  ['Source Sans 3', 'Calm and highly readable; Adobe’s workhorse.']
+];
+document.getElementById('fonts').innerHTML =
+  '<div class="lbl" style="margin-bottom:4px">Heading fonts</div>' +
+  HEAD.map(h => '<div class="font-row"><div class="font-sample" style="font-family:\''+h[0]+'\',serif;font-weight:'+h[1]+'">Meera’s turn · 1,240</div><div class="font-spec"><b>'+h[0]+'.</b> '+h[2]+'</div></div>').join('') +
+  '<div class="lbl" style="margin:30px 0 4px">Text fonts</div>' +
+  BODY.map(b => '<div class="font-row"><div class="font-body" style="font-family:\''+b[0]+'\',sans-serif">Pay 40 without looking at your cards. The stake doubles to 40 for everyone after you. <b style="font-weight:600">Chaal · Raise · Pack</b></div><div class="font-spec"><b>'+b[0]+'.</b> '+b[1]+'</div></div>').join('');
+</script>
+</body>
+</html>

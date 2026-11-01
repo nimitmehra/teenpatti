@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teen Patti Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Bodoni+Moda:wght@600;700&family=Libre+Caslon+Text:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#F4F1EB; --surface:#FFFFFF; --line:#DED7CA;
+  --ink:#17140F; --ink-2:#4F483E; --muted:#6E665A;
+  --walnut:#6B4C24; --walnut-deep:#553B1A; --brass:#A8823A;
+  --forest:#2F6A3B; --forest-tint:#E7F0E4;
+  --brick:#A23A2F; --brick-tint:#F6E4E0; --brick-line:#E8C6BF;
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--page); color:var(--ink); font-family:var(--sans); font-size:18px; line-height:1.6; font-variant-numeric:lining-nums; -webkit-font-smoothing:antialiased}
+.wrap{max-width:900px; margin:0 auto; padding:0 20px 100px}
+@media (max-width:640px){ .wrap{padding:0 16px 80px} }
+
+/* masthead */
+.mast{border-bottom:1px solid var(--line); background:var(--surface)}
+.mast-in{max-width:900px; margin:0 auto; padding:22px 20px; display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap}
+.wordmark{font-family:var(--serif); font-weight:700; font-size:34px; letter-spacing:.01em; line-height:1}
+.wordmark small{display:block; font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--walnut); margin-top:6px}
+.mast-note{color:var(--muted); font-size:15px}
+
+.intro h1{font-family:var(--serif); font-weight:700; font-size:clamp(42px,7vw,64px); line-height:1.02; letter-spacing:-.01em; margin:56px 0 14px}
+.intro p{font-size:20px; color:var(--ink-2); max-width:680px; margin:0}
+
+/* card with band, modelled on the reference screenshot */
+.card{background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:36px}
+.band{background:var(--walnut); color:#fff; padding:16px 28px; display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap}
+.band h2{font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.1; margin:0; letter-spacing:.01em}
+.band span{font-size:15px; font-weight:500; opacity:.92}
+.body{padding:28px}
+@media (max-width:640px){ .band{padding:14px 18px} .body{padding:20px 18px} }
+
+.eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--walnut)}
+.sub{color:var(--muted); font-size:16px}
+
+/* type scale */
+.scale-row{display:grid; grid-template-columns:200px 1fr; gap:24px; align-items:baseline; padding:20px 0; border-bottom:1px solid var(--line)}
+.scale-row:first-child{padding-top:0}
+.scale-row:last-child{border-bottom:none; padding-bottom:0}
+.spec{font-size:13px; color:var(--muted); line-height:1.45}
+.spec b{display:block; color:var(--ink); font-size:14px; font-weight:600}
+@media (max-width:640px){ .scale-row{grid-template-columns:1fr; gap:6px} }
+.t-display{font-family:var(--serif); font-weight:700; font-size:60px; line-height:1; letter-spacing:-.01em}
+.t-h1{font-family:var(--serif); font-weight:700; font-size:42px; line-height:1.08}
+.t-h2{font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.15}
+.t-h3{font-weight:600; font-size:21px; line-height:1.3}
+.t-body{font-size:18px; line-height:1.6}
+.t-sub{font-size:16px; color:var(--muted)}
+.t-num{font-family:var(--serif); font-weight:700; font-size:64px; line-height:1; font-variant-numeric:lining-nums tabular-nums}
+@media (max-width:640px){ .t-display{font-size:44px} .t-num{font-size:52px} }
+
+/* bullets */
+ul.diamond{list-style:none; padding:0; margin:0}
+ul.diamond li{position:relative; padding-left:26px; margin:10px 0}
+ul.diamond li::before{content:""; position:absolute; left:4px; top:.62em; width:8px; height:8px; background:var(--walnut); transform:rotate(45deg)}
+ol.steps{list-style:none; counter-reset:s; padding:0; margin:0}
+ol.steps li{counter-increment:s; position:relative; padding-left:44px; margin:14px 0}
+ol.steps li::before{content:counter(s); position:absolute; left:0; top:-4px; font-family:var(--serif); font-weight:700; font-size:28px; color:var(--walnut); width:30px; text-align:right}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:28px}
+@media (max-width:700px){ .two-col{grid-template-columns:1fr} }
+
+/* colours */
+.tint-good{background:var(--forest-tint); border-radius:10px; padding:20px 22px}
+.tint-bad{background:var(--brick-tint); border-radius:10px; padding:20px 22px}
+.tint-good .eyebrow{color:var(--forest)} .tint-bad .eyebrow{color:var(--brick)}
+.sw-row{display:flex; align-items:center; gap:14px; margin:12px 0}
+.sw{width:40px; height:40px; border-radius:8px; border:1px solid rgba(0,0,0,.12); flex:none}
+.sw-row b{font-weight:600}
+.sw-row span{color:var(--muted); font-size:15px}
+.palette{display:grid; grid-template-columns:3fr 2fr; gap:22px}
+@media (max-width:700px){ .palette{grid-template-columns:1fr} }
+
+/* buttons */
+.actions{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px}
+@media (max-width:700px){ .actions{grid-template-columns:1fr} }
+.btn{display:flex; flex-direction:column; gap:4px; text-align:left; min-height:96px; padding:18px 22px; border-radius:12px; border:1.5px solid transparent; font-family:var(--sans); cursor:pointer;
+  transition:background-color .15s var(--ease), border-color .15s var(--ease), transform .08s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid var(--brass); outline-offset:3px}
+.btn-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px}
+.btn-title{font-size:21px; font-weight:600; line-height:1.25}
+.btn-amt{font-family:var(--serif); font-weight:700; font-size:32px; line-height:1; font-variant-numeric:lining-nums tabular-nums}
+.btn-desc{font-size:15.5px; line-height:1.45}
+.btn-primary{background:var(--walnut); color:#fff} .btn-primary .btn-desc{color:rgba(255,255,255,.86)}
+.btn-primary:hover{background:var(--walnut-deep)}
+.btn-secondary{background:var(--surface); color:var(--ink); border-color:var(--ink)} .btn-secondary .btn-desc{color:var(--ink-2)}
+.btn-secondary:hover{background:var(--page)}
+.btn-quiet{background:var(--surface); color:var(--ink); border-color:var(--line)} .btn-quiet .btn-desc{color:var(--muted)}
+.btn-quiet:hover{border-color:var(--ink)}
+.btn-danger{background:var(--brick-tint); color:var(--brick); border-color:var(--brick-line)} .btn-danger .btn-desc{color:var(--brick)}
+.btn-danger:hover{background:#F0D5CF; border-color:var(--brick)}
+.btn-wide{grid-column:1/-1}
+.btn[disabled]{opacity:.4; cursor:not-allowed}
+.btn[disabled]:active{transform:none}
+.states{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:8px}
+@media (max-width:700px){ .states{grid-template-columns:1fr 1fr} }
+.state{text-align:center}
+.state .btn{min-height:64px; justify-content:center; align-items:center; text-align:center}
+.state .cap{font-size:13px; color:var(--muted); margin-top:8px}
+.btn.fake-hover{background:var(--walnut-deep)}
+.btn.fake-focus{outline:3px solid var(--brass); outline-offset:3px}
+.btn.fake-press{background:var(--walnut-deep); transform:translateY(1px)}
+
+/* turn demo */
+.status{display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); border-radius:10px; overflow:hidden}
+.status div{padding:14px 18px; border-right:1px solid var(--line)}
+.status div:last-child{border-right:none}
+.status .lbl{font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block}
+.status .val{font-family:var(--serif); font-weight:700; font-size:36px; line-height:1.1; font-variant-numeric:lining-nums tabular-nums}
+.status .pot .val{color:var(--walnut)}
+.turn-name{font-family:var(--serif); font-weight:700; font-size:clamp(44px,7vw,60px); line-height:1; margin:28px 0 8px; letter-spacing:-.01em}
+.turn-name.leave{opacity:0; transform:translateY(-6px); transition:opacity .16s var(--ease), transform .16s var(--ease)}
+.turn-name.enter{opacity:0; transform:translateY(8px)}
+.turn-name.settle{opacity:1; transform:none; transition:opacity .22s var(--ease), transform .22s var(--ease)}
+.pill{display:inline-block; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border-radius:6px; vertical-align:middle}
+.pill-seen{background:var(--forest-tint); color:var(--forest)}
+.pill-blind{background:#F1EBDF; color:var(--walnut)}
+.pill-packed{background:var(--brick-tint); color:var(--brick)}
+.demo-bar{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+.link-btn{min-height:52px; padding:0 20px; border-radius:10px; border:1.5px solid var(--ink); background:var(--surface); color:var(--ink); font:600 17px var(--sans); cursor:pointer}
+.link-btn:hover{background:var(--page)}
+
+/* seats + leaderboard */
+.seats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:700px){ .seats{grid-template-columns:1fr} }
+.seat{border:1px solid var(--line); border-radius:10px; padding:14px 16px; position:relative}
+.seat.turn{border-color:var(--ink); box-shadow:inset 4px 0 0 var(--brass)}
+.seat.packed{color:var(--muted)}
+.seat-name{font-weight:600; font-size:20px; display:flex; justify-content:space-between; align-items:center}
+.seat-row{display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:4px}
+.seat-row b{color:var(--ink); font-weight:600}
+.seat.packed .seat-row b{color:var(--muted)}
+.dealer{font-size:12px; font-weight:700; border:1.5px solid var(--ink); border-radius:50%; width:26px; height:26px; display:inline-grid; place-items:center}
+.lb-row{display:grid; grid-template-columns:48px 1fr auto auto; gap:18px; align-items:center; padding:18px 4px; border-bottom:1px solid var(--line)}
+.lb-row:last-child{border-bottom:none}
+.lb-rank{font-family:var(--serif); font-weight:700; font-size:34px; color:var(--walnut); text-align:center}
+.lb-name{font-weight:600; font-size:21px; line-height:1.25}
+.lb-name span{display:block; font-weight:400; font-size:15px; color:var(--muted)}
+.lb-net{font-family:var(--serif); font-weight:700; font-size:34px; font-variant-numeric:lining-nums tabular-nums}
+.lb-chips{text-align:right; font-size:15px; color:var(--muted); min-width:90px}
+.lb-chips b{display:block; color:var(--ink); font-size:19px; font-weight:600}
+.up{color:var(--forest)} .down{color:var(--brick)}
+@media (max-width:560px){ .lb-row{grid-template-columns:36px 1fr auto} .lb-chips{display:none} }
+
+/* font comparison */
+.cmp-row{padding:18px 0; border-bottom:1px solid var(--line)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-sample{font-size:46px; font-weight:700; line-height:1.1}
+.cmp-row .spec{margin-top:6px}
+
+.motion-list dt{font-weight:600; margin-top:14px}
+.motion-list dd{margin:2px 0 0; color:var(--ink-2)}
+
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <div class="wordmark">Teen Patti<small>Family Score Keeper</small></div>
+  <div class="mast-note">Style guide, proposal for approval</div>
+</div></header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>Plain, high contrast, and quietly royal.</h1>
+    <p>Black ink on white paper, one walnut brown for authority, green for good news and brick red for caution. Royalty comes from the type and the spacing, not from gold or glitter.</p>
+  </section>
+
+  <!-- TYPE -->
+  <section class="card">
+    <div class="band"><h2>Typography</h2><span>Two families: a royal serif, a plain sans</span></div>
+    <div class="body">
+      <div class="scale-row"><div class="spec"><b>Display</b>Cormorant Garamond 700 · 60px<br>Whose turn it is. One per screen.</div><div class="t-display">Meera’s turn</div></div>
+      <div class="scale-row"><div class="spec"><b>Page title</b>Cormorant Garamond 700 · 42px</div><div class="t-h1">Who’s up, who’s down</div></div>
+      <div class="scale-row"><div class="spec"><b>Section header</b>Cormorant Garamond 700 · 30px<br>White on the walnut band</div><div class="t-h2">At the table</div></div>
+      <div class="scale-row"><div class="spec"><b>Sub-heading</b>Instrument Sans 600 · 21px</div><div class="t-h3">What was the winning hand?</div></div>
+      <div class="scale-row"><div class="spec"><b>Label</b>Instrument Sans 600 · 13px · spaced capitals · walnut</div><div class="eyebrow">Now playing · Hand 3</div></div>
+      <div class="scale-row"><div class="spec"><b>Body</b>Instrument Sans 400 · 18px · line height 1.6</div><div class="t-body">The stake is the price of staying in. A Blind player pays the stake; a Seen player pays double.</div></div>
+      <div class="scale-row"><div class="spec"><b>Subtext</b>Instrument Sans 400 · 16px · warm grey</div><div class="t-sub">Optional, for the records. It feeds each player’s best hand.</div></div>
+      <div class="scale-row"><div class="spec"><b>Money</b>Cormorant Garamond 700 · 64px · even-width figures so columns line up</div><div class="t-num">1,240</div></div>
+    </div>
+  </section>
+
+  <!-- BULLETS -->
+  <section class="card">
+    <div class="band"><h2>Bullets and steps</h2><span>A small diamond, like the card suit</span></div>
+    <div class="body two-col">
+      <div>
+        <div class="eyebrow" style="margin-bottom:6px">Bullets</div>
+        <ul class="diamond">
+          <li><b>A run beats a colour.</b> <span class="sub">The opposite of poker.</span></li>
+          <li><b>K A 2 is not a run.</b> <span class="sub">The ace sits at the top or bottom only.</span></li>
+          <li><b>Suits do not rank.</b> <span class="sub">Spades are not higher than hearts.</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:6px">Steps</div>
+        <ol class="steps">
+          <li>Everyone pays the boot.</li>
+          <li>The dealer gives 3 cards each, face down.</li>
+          <li>The player on the dealer’s left goes first.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOURS -->
+  <section class="card">
+    <div class="band"><h2>Colours</h2><span>Ink and paper first · colour only where it means something</span></div>
+    <div class="body palette">
+      <div class="tint-good">
+        <div class="eyebrow">Everyday</div>
+        <div class="sw-row"><div class="sw" style="background:#17140F"></div><div><b>Ink</b> <span>#17140F · all text and outlines</span></div></div>
+        <div class="sw-row"><div class="sw" style="background:#FFFFFF"></div><div><b>Paper</b> <span>#FFFFFF · cards</span></div></div>
+        <div class="sw-row"><div class="sw" style="background:#F4F1EB"></div><div><b>Linen</b> <span>#F4F1EB · page background</span></div></div>
+        <div class="sw-row"><div class="sw" style="background:#6B4C24"></div><div><b>Walnut</b> <span>#6B4C24 · bands, main button, numbers</span></div></div>
+        <div class="sw-row"><div class="sw" style="background:#2F6A3B"></div><div><b>Forest</b> <span>#2F6A3B · winner, up, seen</span></div></div>
+      </div>
+      <div class="tint-bad">
+        <div class="eyebrow">Use sparingly</div>
+        <div class="sw-row"><div class="sw" style="background:#A23A2F"></div><div><b>Brick</b> <span>#A23A2F · pack, down</span></div></div>
+        <div class="sw-row"><div class="sw" style="background:#A8823A"></div><div><b>Brass</b> <span>#A8823A · thin lines only</span></div></div>
+        <p class="sub" style="margin:12px 0 0;color:var(--brick)">Brass is never used for text: it is too faint on white. No gradients, no glow, no shadows.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS + TURN DEMO -->
+  <section class="card">
+    <div class="band"><h2>A turn, in the new style</h2><span>Hand 3 · Dealer Asha</span></div>
+    <div class="body">
+      <div class="status">
+        <div><span class="lbl">Pot</span><span class="val pot-val" id="pot">140</span></div>
+        <div><span class="lbl">Stake</span><span class="val">20</span></div>
+        <div><span class="lbl">Limit</span><span class="val" style="color:var(--muted)">10,240</span></div>
+      </div>
+      <div class="eyebrow" style="margin-top:28px">Now playing</div>
+      <div class="turn-name" id="turnName">Meera’s turn</div>
+      <div class="t-sub" id="turnSub"><span class="pill pill-seen">Seen</span> &nbsp;Has looked at the cards, so every bet costs double.</div>
+      <div class="actions">
+        <button class="btn btn-primary" id="chaalBtn"><span class="btn-top"><span class="btn-title">Chaal</span><span class="btn-amt">40</span></span><span class="btn-desc">Stay in. Pay 40, twice the stake, because you have seen your cards.</span></button>
+        <button class="btn btn-secondary"><span class="btn-top"><span class="btn-title">Raise</span><span class="btn-amt">80</span></span><span class="btn-desc">Pay 80. The stake doubles to 40 for everyone after you.</span></button>
+        <button class="btn btn-quiet"><span class="btn-top"><span class="btn-title">Side Show with Ravi</span><span class="btn-amt">40</span></span><span class="btn-desc">Pay 40, then compare cards with Ravi in secret. Lower hand packs.</span></button>
+        <button class="btn btn-quiet" disabled><span class="btn-top"><span class="btn-title">Show</span></span><span class="btn-desc">Only when exactly 2 players are left.</span></button>
+        <button class="btn btn-danger btn-wide"><span class="btn-top"><span class="btn-title">Pack</span></span><span class="btn-desc">Give up this hand. You lose the 50 you have put in, nothing more.</span></button>
+      </div>
+      <div class="demo-bar">
+        <button class="link-btn" id="playDemo">Try it: tap Chaal and watch</button>
+        <button class="link-btn" id="resetDemo">Reset</button>
+      </div>
+
+      <div class="eyebrow" style="margin-top:36px">Button states</div>
+      <div class="states">
+        <div class="state"><button class="btn btn-primary"><span class="btn-title">Chaal</span></button><div class="cap">Resting</div></div>
+        <div class="state"><button class="btn btn-primary fake-hover"><span class="btn-title">Chaal</span></button><div class="cap">Mouse over: one shade deeper</div></div>
+        <div class="state"><button class="btn btn-primary fake-press"><span class="btn-title">Chaal</span></button><div class="cap">Pressed: sinks 1px</div></div>
+        <div class="state"><button class="btn btn-primary fake-focus"><span class="btn-title">Chaal</span></button><div class="cap">Keyboard focus: brass ring</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEATS + SCORES -->
+  <section class="card">
+    <div class="band"><h2>At the table</h2><span>Turn shown by an ink outline and a brass edge</span></div>
+    <div class="body">
+      <div class="seats">
+        <div class="seat"><div class="seat-name">Asha <span class="dealer" title="Dealer">D</span></div><span class="pill pill-blind">Blind</span><div class="seat-row"><span>Chips</span><b>990</b></div><div class="seat-row"><span>In this hand</span><b>30</b></div></div>
+        <div class="seat turn"><div class="seat-name">Meera</div><span class="pill pill-seen">Seen</span><div class="seat-row"><span>Chips</span><b>950</b></div><div class="seat-row"><span>In this hand</span><b>50</b></div></div>
+        <div class="seat packed"><div class="seat-name">Ravi</div><span class="pill pill-packed">Packed</span><div class="seat-row"><span>Chips</span><b>980</b></div><div class="seat-row"><span>In this hand</span><b>20</b></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="card">
+    <div class="band"><h2>Who’s up, who’s down</h2><span>After 4 hands</span></div>
+    <div class="body" style="padding-top:8px;padding-bottom:8px">
+      <div class="lb-row"><div class="lb-rank">1</div><div class="lb-name">Asha<span>Won 3 of 4 · best hand Colour</span></div><div class="lb-net up">+190</div><div class="lb-chips">Chips<b>1,190</b></div></div>
+      <div class="lb-row"><div class="lb-rank">2</div><div class="lb-name">Ravi<span>Won 1 of 4</span></div><div class="lb-net down">−10</div><div class="lb-chips">Chips<b>990</b></div></div>
+      <div class="lb-row"><div class="lb-rank">3</div><div class="lb-name">Meera<span>Won 0 of 4</span></div><div class="lb-net down">−180</div><div class="lb-chips">Chips<b>820</b></div></div>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section class="card">
+    <div class="band"><h2>How things move</h2><span>Fast, small, never bouncy</span></div>
+    <div class="body">
+      <dl class="motion-list" style="margin:0">
+        <dt>Tap</dt><dd>The button sinks 1 pixel for an instant. You feel the press without anything flying around.</dd>
+        <dt>Next player</dt><dd>The old name fades up and out; the new name rises 8 pixels into place. About a fifth of a second.</dd>
+        <dt>Pot</dt><dd>The number counts up to its new total in under half a second, so everyone sees the chips go in.</dd>
+        <dt>Winner</dt><dd>The winner’s seat turns forest green. No confetti.</dd>
+        <dt>Calm setting</dt><dd>If the device is set to reduce motion, everything simply switches with no animation.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- FONT COMPARISON -->
+  <section class="card">
+    <div class="band"><h2>Heading font: the alternatives</h2><span>Recommended first</span></div>
+    <div class="body">
+      <div class="cmp-row"><div class="cmp-sample" style="font-family:'Cormorant Garamond',serif">Meera’s turn · 1,240</div><div class="spec"><b>Cormorant Garamond (recommended)</b>Classic and royal, with fine detail that looks expensive at large sizes. Used only big, never for small text.</div></div>
+      <div class="cmp-row"><div class="cmp-sample" style="font-family:'Bodoni Moda',serif;font-size:42px">Meera’s turn · 1,240</div><div class="spec"><b>Bodoni Moda</b>Fashion-magazine sharp, very high contrast. More Vogue than maharaja.</div></div>
+      <div class="cmp-row"><div class="cmp-sample" style="font-family:'Libre Caslon Text',serif;font-size:40px">Meera’s turn · 1,240</div><div class="spec"><b>Libre Caslon</b>Sturdier and bookish; closest to the heading in your screenshot. Less ceremony, easiest to read.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pot = document.getElementById('pot'), name = document.getElementById('turnName'), sub = document.getElementById('turnSub');
+  function countTo(el, from, to, ms){
+    if (reduce) { el.textContent = to.toLocaleString('en-IN'); return; }
+    const t0 = performance.now();
+    function step(t){ const p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e).toLocaleString('en-IN'); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function swapName(text, subHtml){
+    if (reduce) { name.textContent = text; sub.innerHTML = subHtml; return; }
+    name.className = 'turn-name leave';
+    setTimeout(() => { name.textContent = text; sub.innerHTML = subHtml; name.className = 'turn-name enter';
+      requestAnimationFrame(() => requestAnimationFrame(() => { name.className = 'turn-name settle'; })); }, 170);
+  }
+  function play(){ countTo(pot, 140, 180, 420); swapName('Asha’s turn', '<span class="pill pill-blind">Blind</span> &nbsp;Has not looked at the cards yet, so bets cost half.'); }
+  function reset(){ pot.textContent = '140'; name.className = 'turn-name'; name.textContent = 'Meera’s turn';
+    sub.innerHTML = '<span class="pill pill-seen">Seen</span> &nbsp;Has looked at the cards, so every bet costs double.'; }
+  document.getElementById('playDemo').addEventListener('click', play);
+  document.getElementById('chaalBtn').addEventListener('click', play);
+  document.getElementById('resetDemo').addEventListener('click', reset);
+})();
+</script>
+</body>
+</html>
